@@ -1,3 +1,22 @@
-/* styles.css */
+<style>
+    div {
+        margin-bottom: 16px;
+    }
+	
+	#main {
+		text-align: center;
+	}
 
-/* Add styles here to customize the appearance of your app */
+	#qr-video{
+		width: 50%;
+	}
+	
+	
+    #flash-toggle {
+        display: none;
+    }
+
+    hr {
+        margin-top: 32px;
+    }
+</style>
