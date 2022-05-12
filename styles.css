@@ -1,22 +1,19 @@
-<style>
-    div {
-        margin-bottom: 16px;
-    }
-	
-	#main {
-		text-align: center;
-	}
+div {
+  margin-bottom: 16px;
+}
 
-	#qr-video{
-		width: 50%;
-	}
-	
-	
-    #flash-toggle {
-        display: none;
-    }
+#main {
+  text-align: center;
+}
 
-    hr {
-        margin-top: 32px;
-    }
-</style>
+#qr-video {
+  width: 50%;
+}
+
+#flash-toggle {
+  display: none;
+}
+
+hr {
+  margin-top: 32px;
+}
