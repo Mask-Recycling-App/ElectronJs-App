@@ -21,4 +21,14 @@ h6 {
   background-image: linear-gradient(to bottom left, #98fcbd, #9cdaf8);
   height: 100vh;
   margin: auto;
+  /* center elements vertically and horizontally */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
+/* .innerdiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} */
