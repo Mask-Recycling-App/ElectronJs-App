@@ -1,19 +1,11 @@
-div {
-  margin-bottom: 16px;
-}
-
 #main {
   text-align: center;
 }
 
 #qr-video {
-  width: 50%;
+  width: 70%;
 }
 
 #flash-toggle {
   display: none;
-}
-
-hr {
-  margin-top: 32px;
 }
