@@ -16,16 +16,58 @@ const flashState = document.getElementById("flash-state");
 const camQrResult = document.getElementById("cam-qr-result");
 const camQrLastResult = document.getElementById("cam-qr-last-result");
 
+function openModal() {
+  var modal = document.getElementById("modal");
+  var dimmer = document.getElementById("background-dimmer");
+  modal.style.display = "";
+  modal.classList.add("float-in-from-above");
+  modal.classList.remove("float-out-to-above");
+  dimmer.style.display = "";
+  dimmer.classList.add("fade-in");
+  dimmer.classList.remove("fade-out");
+}
+
+function fillModal(data) {
+  var name = document.getElementById("name-input");
+  var surname = document.getElementById("surname-input");
+  var balance = document.getElementById("balance-input");
+  var masks = document.getElementById("masks-input");
+  // change the values of the inputs
+  // CIA SUKEIST KAIP PAEMA INFO
+  name.value = data.firstName || "";
+  surname.value = data.lastName || "";
+  balance.value = data.role || "";
+  masks.value = data.email || "";
+}
+
 function setResult(label, result) {
   console.log(result.data);
   label.textContent = result.data;
   camQrLastResult.textContent = result.data;
+  getData(result.data);
   label.style.color = "teal";
   clearTimeout(label.highlightTimeout);
   label.highlightTimeout = setTimeout(
     () => (label.style.color = "inherit"),
     100
   );
+}
+var lastUrl = "";
+function getData(url) {
+  if (url === lastUrl) return;
+  lastUrl = url;
+
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      if (data.error) {
+      } else {
+        openModal();
+        fillModal(data);
+      }
+    })
+    .catch((error) => console.log(error));
 }
 
 // ####### Web Cam Scanning #######
@@ -87,3 +129,23 @@ document.getElementById("start-button").addEventListener("click", () => {
 document.getElementById("stop-button").addEventListener("click", () => {
   scanner.stop();
 });
+
+document.getElementById("close-modal-button").addEventListener("click", () => {
+  closeModal();
+});
+
+function closeModal() {
+  var modal = document.getElementById("modal");
+  var dimmer = document.getElementById("background-dimmer");
+  modal.style.display = "";
+  modal.classList.remove("float-in-from-above");
+  modal.classList.add("float-out-to-above");
+  dimmer.style.display = "";
+  dimmer.classList.remove("fade-in");
+  dimmer.classList.add("fade-out");
+  setTimeout(() => {
+    modal.style.display = "none";
+    dimmer.style.display = "none";
+  }, 1000);
+  lastUrl = "";
+}
