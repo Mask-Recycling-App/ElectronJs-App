@@ -56,7 +56,7 @@ var lastUrl = "";
 function getData(url) {
   if (url === lastUrl) return;
   lastUrl = url;
-
+  let url = "http//localhost:8080/users/" + id;
   fetch(url)
     .then((response) => response.json())
     .then((data) => {

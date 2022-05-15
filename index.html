@@ -89,7 +89,6 @@
 
     <div class="gradCamera w3-sidebar" style="width: 60%">
       <div id="main">
-        <h1>Scanner</h1>
         <div>
           <video id="qr-video"></video>
         </div>
@@ -108,8 +107,8 @@
         <b>Last detected: </b>
         <span id="cam-qr-last-result">None</span>
         <br />
-        <button id="start-button">Start</button>
-        <button id="stop-button">Stop</button>
+        <button id="start-button" class="button-6">Start</button>
+        <button id="stop-button" class="button-6">Stop</button>
       </div>
 
       <script>
@@ -126,9 +125,8 @@
             dimmer.classList.remove("fade-out");
           });
       </script>
-      <script type="module" src="./renderer.js"></script>
     </div>
-
+    <script type="module" src="./renderer.js"></script>
     <div class="grad" style="margin-left: 60%">
       <h1
         class="display-1 w3-main w3-padding-large w3-hide-medium w3-hide-small"
