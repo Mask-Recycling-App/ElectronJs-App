@@ -123,6 +123,7 @@ flashToggle.addEventListener("click", () => {
 });
 
 document.getElementById("start-button").addEventListener("click", () => {
+  console.log('start');
   scanner.start();
 });
 

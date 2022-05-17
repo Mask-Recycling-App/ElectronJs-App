@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>QR Scanner</title>
+    <title></title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
@@ -67,24 +67,6 @@
           disabled
         />
       </div>
-      <!-- <script>
-        document
-          .getElementById("modal-close-button")
-          .addEventListener("click", () => {
-            var modal = document.getElementById("modal");
-            var dimmer = document.getElementById("background-dimmer");
-            modal.style.display = "";
-            modal.classList.remove("float-in-from-above");
-            modal.classList.add("float-out-to-above");
-            dimmer.style.display = "";
-            dimmer.classList.remove("fade-in");
-            dimmer.classList.add("fade-out");
-            setTimeout(() => {
-              modal.style.display = "none";
-              dimmer.style.display = "none";
-            }, 1000);
-          });
-      </script> -->
     </div>
 
     <div class="gradCamera w3-sidebar" style="width: 60%">
@@ -110,23 +92,7 @@
         <button id="start-button" class="button-6">Start</button>
         <button id="stop-button" class="button-6">Stop</button>
       </div>
-
-      <script>
-        document
-          .getElementById("start-button")
-          .addEventListener("click", () => {
-            var modal = document.getElementById("modal");
-            var dimmer = document.getElementById("background-dimmer");
-            modal.style.display = "";
-            modal.classList.add("float-in-from-above");
-            modal.classList.remove("float-out-to-above");
-            dimmer.style.display = "";
-            dimmer.classList.add("fade-in");
-            dimmer.classList.remove("fade-out");
-          });
-      </script>
     </div>
-    <script type="module" src="./renderer.js"></script>
     <div class="grad" style="margin-left: 60%">
       <h1
         class="display-1 w3-main w3-padding-large w3-hide-medium w3-hide-small"
@@ -136,4 +102,5 @@
       <br />
     </div>
   </body>
+  <script type="module" src="./renderer.js"></script>
 </html>
