@@ -44,7 +44,7 @@ function setResult(label, result) {
   console.log(result.data);
   label.textContent = result.data;
   camQrLastResult.textContent = result.data;
-  getData(result.data);
+  setTimeout(() => getData(result.data), 1000);
   label.style.color = "teal";
   clearTimeout(label.highlightTimeout);
   label.highlightTimeout = setTimeout(
@@ -52,22 +52,26 @@ function setResult(label, result) {
     100
   );
 }
-var lastUrl = "";
-function getData(url) {
-  if (url === lastUrl) return;
-  lastUrl = url;
-  let url = "http//localhost:8080/users/" + id;
+var lastId = "";
+function getData(id) {
+  if (id === lastId) return;
+  lastId = id;
+  let url = "http://localhost:8080/users/" + id;
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
-      if (data.error) {
-      } else {
-        openModal();
-        fillModal(data);
-      }
+      localStorage.setItem('user', JSON.stringify(data));
+      window.location.href = 'user-info.html';
     })
     .catch((error) => console.log(error));
+}
+
+function fillUserData(data) {
+  const user = localStorage.getItem('user');
+  document.getElementById("name-field").innerHTML = user?.firstName || '';
+  document.getElementById("lastname-field").innerHTML = user?.lastName || '';
+  document.getElementById("balance-field").innerHTML = user?.balance || '';
 }
 
 // ####### Web Cam Scanning #######
@@ -123,7 +127,6 @@ flashToggle.addEventListener("click", () => {
 });
 
 document.getElementById("start-button").addEventListener("click", () => {
-  console.log('start');
   scanner.start();
 });
 
@@ -134,19 +137,3 @@ document.getElementById("stop-button").addEventListener("click", () => {
 document.getElementById("close-modal-button").addEventListener("click", () => {
   closeModal();
 });
-
-function closeModal() {
-  var modal = document.getElementById("modal");
-  var dimmer = document.getElementById("background-dimmer");
-  modal.style.display = "";
-  modal.classList.remove("float-in-from-above");
-  modal.classList.add("float-out-to-above");
-  dimmer.style.display = "";
-  dimmer.classList.remove("fade-in");
-  dimmer.classList.add("fade-out");
-  setTimeout(() => {
-    modal.style.display = "none";
-    dimmer.style.display = "none";
-  }, 1000);
-  lastUrl = "";
-}

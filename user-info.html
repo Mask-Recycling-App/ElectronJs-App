@@ -20,9 +20,47 @@
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
 </head>
-<body>
+<body onload="fillData()">
 <div class="grad">
-    <button id="start-button" class="button-6" onclick="location.href='index.html';">Logout</button>
+    <div class="column-container">
+        <h1>Vartotojas</h1>
+        <h3 id="name-field"></h3>
+        <h3 id="balance-field"></h3>
+        <button id="start-button" class="button-6 logout-button" onclick="location.href='index.html';">Atsijungti</button>
+    </div>
+    <div class="column-container">
+        <h1>Surūšiuota kaukių</h1>
+        <div class="row-container">
+            <img height="150px" width="150px" src="https://ctgimage1.s3.amazonaws.com/cms/image/3d8679ce9550aa9da794d168b37b027d.png">
+            <h1 style="padding-left: 24px;" id="mask-number-field">0</h1>
+        </div>
+    </div>
 </div>
+<script type="module" src="renderer.js"></script>
+<script>
+    function fillData(){
+        const user = JSON.parse(localStorage.getItem('user'));
+        console.log(user.firstName);
+        document.getElementById("name-field").innerHTML = user?.firstName + ' ' + user?.lastName || 'Neatpažintas';
+        document.getElementById("balance-field").innerHTML = 'Balansas: ' + user?.balance || 0;
+    }
+
+
+    var maskNumber = 0;
+    document.body.onkeyup = function(e) {
+        if (e.key === " " ||
+            e.code === "Space"
+        ) {
+            document.getElementById("mask-number-field").innerHTML = (++maskNumber).toString();
+            fetch("http://localhost:8080/points/recycle", {
+                method: "POST",
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({userId: JSON.parse(localStorage.getItem('user'))._id, deviceId: localStorage.getItem('deviceId')})
+            }).then(res => res.json()).then(user => {
+                document.getElementById("balance-field").innerHTML = 'Balansas: ' + user?.balance || 0;
+            });
+        }
+    }
+</script>
 </body>
 </html>
