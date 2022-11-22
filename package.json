@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "@mantine/form": "^4.2.4",
-    "bootstrap": "^5.1.3",
+    "bootstrap": "^5.2.3",
     "getmac": "^5.20.0",
     "node-machine-id": "^1.1.12"
   }
